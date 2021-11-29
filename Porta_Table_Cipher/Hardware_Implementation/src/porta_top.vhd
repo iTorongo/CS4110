@@ -2,7 +2,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-entity napoleon is
+entity porta is
    generic(
      -- Default setting:
      -- 19,200 baud, 8 data bis, 1 stop bits
@@ -20,9 +20,9 @@ entity napoleon is
       rx: in std_logic;
       tx: out std_logic
    );
-end napoleon;
+end porta;
 
-architecture str_arch of napoleon is
+architecture str_arch of porta is
    signal tick: std_logic;
    signal rx_done: std_logic;
    signal ascii_r, ascii_t: std_logic_vector(7 downto 0);

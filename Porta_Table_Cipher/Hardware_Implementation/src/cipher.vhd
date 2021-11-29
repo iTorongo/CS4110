@@ -14,7 +14,8 @@ signal skey:  unsigned (7 downto 0);
 signal sdout: unsigned (7 downto 0);
 
 begin
-   sdin <= unsigned(ascii_r);    
+   sdin <= (unsigned(ascii_r) + x"20") when ((unsigned(ascii_r) >= x"41") and (unsigned(ascii_r) <= x"5A")) else
+    unsigned(ascii_r);    
    skey <= unsigned(key);
     
    sdout <= -- case of space:
@@ -123,6 +124,7 @@ begin
         sdin;
 
          
-    cphr_out <= std_logic_vector(sdout);
+    cphr_out <= std_logic_vector(sdout - x"20") when ((unsigned(ascii_r) >= x"41") and (unsigned(ascii_r) <= x"5A")) else
+        std_logic_vector(sdout);
     
 end arch;
