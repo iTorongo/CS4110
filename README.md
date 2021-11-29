@@ -12,7 +12,7 @@ Hardware and Software implementation of two stream cipher *Porta table cipher* a
 - [x] Autoclave cipher FSMD and ASMD chart
 - [x] Porta-table cipher partial report
 - [x] Autoclave cipher partial report
-- [x] Porta-table cipher hardware implementation (Need to refactor)
-- [ ] Autoclave cipher hardware implementation
+- [x] Porta-table cipher hardware implementation (vivado) [Need to refactor]
+- [ ] Autoclave cipher hardware implementation (vivado) [Not yet implemented]
 
 
