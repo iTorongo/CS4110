@@ -28,26 +28,26 @@ architecture arch of rom_template is
       x"74",  -- addr 09: t
       x"65",  -- addr 10: e
       x"72",  -- addr 11: r
-	  x"6D",  -- addr 12: m
+	   x"6D",  -- addr 12: m
       x"69",  -- addr 13: i
       x"73",  -- addr 14: s
       x"74",  -- addr 15: t
       x"65",  -- addr 16: e
       x"72",  -- addr 17: r
-	  x"FF",   -- addr 18: (void)
-	  x"FF",  -- addr 19: (void)
-	  x"FF",  -- addr 20: (void)
-	  x"FF",  -- addr 21: (void)
-	  x"FF",  -- addr 22: (void)
-	  x"FF",  -- addr 23: (void)
-	  x"FF",  -- addr 24: (void)
-	  x"FF",  -- addr 25: (void)
-	  x"FF",  -- addr 26: (void)
-	  x"FF",  -- addr 27: (void)
-	  x"FF",  -- addr 28: (void)
-	  x"FF",  -- addr 29: (void)
-	  x"FF",  -- addr 30: (void)
-	  x"FF"   -- addr 31: (void)
+      x"FF",   -- addr 18: (void)
+      x"FF",  -- addr 19: (void)
+      x"FF",  -- addr 20: (void)
+      x"FF",  -- addr 21: (void)
+      x"FF",  -- addr 22: (void)
+      x"FF",  -- addr 23: (void)
+      x"FF",  -- addr 24: (void)
+      x"FF",  -- addr 25: (void)
+      x"FF",  -- addr 26: (void)
+      x"FF",  -- addr 27: (void)
+      x"FF",  -- addr 28: (void)
+      x"FF",  -- addr 29: (void)
+      x"FF",  -- addr 30: (void)
+      x"FF"   -- addr 31: (void)
    );
 begin
    data <= HEX2LED_ROM(to_integer(unsigned(addr)));

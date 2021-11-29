@@ -17,7 +17,7 @@ begin
    sdin <= (unsigned(ascii_r) + x"20") when ((unsigned(ascii_r) >= x"41") and (unsigned(ascii_r) <= x"5A")) else
     unsigned(ascii_r);    
    skey <= unsigned(key);
-    
+    -- TODO: Need to add equation to simplify and refactor
    sdout <= -- case of space:
          x"20" when (sdin=x"20") else
         -- in case of key A or B
