@@ -1,5 +1,5 @@
 
-## Porta-Table Cipher Hardware Implementation on Basys 3 Board
+## Porta-Table Cipher Hardware Implementation
 
 #### The following block diagram represents the FSMD architecture of the implementation of Porta-Table Cipher in hardware.
 
