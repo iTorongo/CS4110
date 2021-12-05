@@ -15,7 +15,7 @@ BEGIN
     BEGIN
         IF (rst = '1') THEN
             q <= (OTHERS => '0');
-        ELSIF rising_edge(clk) THEN     
+        ELSIF rising_edge(clk) THEN
             IF (clear = '1') THEN
                 q <= (OTHERS => '0');
             ELSIF (load = '1') THEN
