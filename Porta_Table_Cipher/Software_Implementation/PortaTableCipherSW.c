@@ -18,9 +18,9 @@
 
 
 /***************************************************************************
-* Return the encrypted text generated with the help of the key
+* Return the encrypted/decrypted text generated with the help of the key
 * @param	Input text and Output text
-* @return	Cipher text
+* @return	Cipher/Plain text
 ****************************************************************************/
 void encryptDecrypt(const char* inputText, char* outputText) {
 	// MARK:- VARIABLES

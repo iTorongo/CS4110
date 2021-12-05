@@ -11,45 +11,43 @@
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 
 #define MAX_TEXT_SIZE 200 // Max text size
-#define DECRYPTION_KEY "bswpjan" // Hardcoded key for decryption process
-#define DECRYPTION_KEY_LENTH 24 // Hardcoded key length
-
 
 /***************************************************************************
-* Return the encrypted text generated with the help of the key
-* @param	Key, Plain text and Cipher text
-* @return	Cipher text
+* Return the encrypted/decrypted text generated with the help of the key
+* @param	Encryption or Decryption Key, Input text and Output text
+* @return	Cipher/Plain text
 ****************************************************************************/
-void encrypt(const char* key, char* plainText, char* encryptedText) {
+void encryptDecrypt(const bool isEncrypt, char* key, char* inputText, char* outputText) {
 
 	// MARK:- VARIABLES
 
-	int plaintextIndex = 0; // To keep track of plaintext character index within the plaintext
-    int cipherText = 0; // To store cipher text
-	int messageToEncrypt = 0; // To calculate and store plain text character index, range of 0-25 for a-z
+	int inputTextIndex = 0; // To keep track of input plain/cipher text character index within the plain/cipher text
+    int processedText = 0; // To store cipher text
+	int messageToProcess = 0; // To calculate and store plain/cipher text character index, range of 0-25 for a-z
 	int keyIndex = 0; // To store the key index, range of 0-25 for a-z
 
 
-	for (plaintextIndex = 0; plainText[plaintextIndex] != '\0'; plaintextIndex++) {
-		if(plainText[plaintextIndex] == ' ') {
-			encryptedText[plaintextIndex] = ' '; // Handle the space
+	for (inputTextIndex = 0; inputText[inputTextIndex] != '\0'; inputTextIndex++) {
+		if(inputText[inputTextIndex] == ' ') {
+			outputText[inputTextIndex] = ' '; // Handle the space
 			continue;
 		}
 
         // Handling Uppercase
 		/// If plaintext is uppercase [A-Z], 65 is substracted to convert it into 0-25 index for simplified calculation
 		/// If plaintext is lowercase [a-z], 97 is substracted to convert it into 0-25 index for simplified calculation
-        if isupper(plainText[plaintextIndex]) {
-            messageToEncrypt = plainText[plaintextIndex] - 65;
+        if isupper(inputText[inputTextIndex]) {
+            messageToProcess = inputText[inputTextIndex] - 65;
         } else {
-            messageToEncrypt = plainText[plaintextIndex] - 97;
+            messageToProcess = inputText[inputTextIndex] - 97;
         }
 
 		// Handle key index conversion
-		/// Considering key will be always lowercased based on the calculations, 97 is substracted to convert it into 0-25 index for simplified calculation
+		/// Considering key will be always lowercased, 97 is substracted to convert it into 0-25 index for simplified calculation
         if (key > 25) {
          	keyIndex = key - 97;
         } else {
@@ -60,82 +58,41 @@ void encrypt(const char* key, char* plainText, char* encryptedText) {
 		/// Pi = Index of plaintext character at i position, Ki = Index of key character at i position
 		// In Autoclave cipher encryption - The ciphertext becomes the key for the next plaintext encryption
 		/// Hence once encryption of a plaintext is complete, the key is updated with the encrypted message
-        cipherText = messageToEncrypt + keyIndex;
-        if (cipherText > 25) {
-            cipherText = cipherText - 26;
-        }
-        key = cipherText; // Update the key
-
-		// Handling uppercase/lowercase input
-        if isupper(plainText[plaintextIndex]) {
-            cipherText = cipherText + 'A'; // If uppercase
-        } else {
-            cipherText = cipherText + 'a'; // If lowercase
-        }
-		
-		encryptedText[plaintextIndex] = (char)cipherText; // Assiging ciphertext character
-	}
-	encryptedText[plaintextIndex] = '\0';
-	return;
-}
-
-
-/***************************************************************************
-* Return the plaintext text generated with the help of the key
-* @param	Cipher text and Plain text
-* @return	Plain text
-****************************************************************************/
-
-void decrypt(const char* cipherText, char* decryptedText) {
-
-	// MARK:- VARIABLES
-
-	char key[DECRYPTION_KEY_LENTH] = DECRYPTION_KEY; // Assign hardcoded key to the variable
-	int cipherTextIndex, keyCounter = 0; // Necessary counter variables
-    int plainText = 0; // To store plaintext
-	int messageToDecrypt = 0; // // To calculate and store cipher text character index, range of 0-25 for a-z
-
-	for (cipherTextIndex = 0; cipherText[cipherTextIndex] != '\0'; cipherTextIndex++) {
-		if(cipherText[cipherTextIndex] == ' ') {
-			decryptedText[cipherTextIndex] = ' '; // Handle spacing
-			continue;
-		}
-
-        // Handling Uppercase
-		/// If plaintext is uppercase [A-Z], 65 is substracted to convert it into 0-25 index for simplified calculation
-		/// If plaintext is lowercase [a-z], 97 is substracted to convert it into 0-25 index for simplified calculation
-        if isupper(cipherText[cipherTextIndex]) {
-            messageToDecrypt = cipherText[cipherTextIndex] - 65;
-        } else {
-            messageToDecrypt = cipherText[cipherTextIndex] - 97;
-        }
-
-		// Handle key index conversion
-		/// Since key is hardcoded and lowercase is used, 97 is substracted to convert it into 0-25 index for simplified calculation
-        int keyIndex = key[keyCounter] - 97;
-
 
 		// The decryption equation:- (Ci - Ki)
 		/// Ci = Index of ciphertext character at i position, Ki = Index of key character at i position
-        plainText = messageToDecrypt - keyIndex;
-        if (plainText < 0) {
-            plainText = plainText + 26;
-        }
+		/// In Autoclave cipher decryption - The ciphertext becomes the key for the next ciphertext decryption
+		/// e.g. if key b is used to decrypt message swpjan, first 'b' will be used for 's' to decrypt, then 's' will be used as key to decrypt next plaintext 'w' and so on
+		/// Hence once decryption of a ciphertext is complete, the key is updated with the ciphertext - the one just decrypted
+        
+		if (isEncrypt) {
+			processedText = messageToProcess + keyIndex;
+			if (processedText > 25) {
+            	processedText = processedText - 26;
+        	}
+        	key = processedText; // Update the key
+		} else {
+			processedText = messageToProcess - keyIndex;
+			if (processedText < 0) {
+            	processedText = processedText + 26;
+        	}
+        	key = inputText[inputTextIndex]; // Update the key
+		}
 
 		// Handling uppercase/lowercase input
-        if isupper(cipherText[cipherTextIndex]) {
-            plainText = plainText + 'A'; // if uppercase
+        if isupper(inputText[inputTextIndex]) {
+            processedText = processedText + 'A'; // If uppercase
         } else {
-            plainText = plainText + 'a'; // if lowercase
+            processedText = processedText + 'a'; // If lowercase
         }
-
-		decryptedText[cipherTextIndex] = (char)plainText; // Assiging plaintext character
-		keyCounter++;
-		keyCounter = (keyCounter > DECRYPTION_KEY_LENTH-1) ? 0 : keyCounter; // If keyCounter greated than predefined key length make the keyCounter to 0, else keyCounter will remain same
+		
+		outputText[inputTextIndex] = (char)processedText; // Assiging processedText character
 	}
-	decryptedText[cipherTextIndex] = '\0';
+	outputText[inputTextIndex] = '\0';
 	return;
 }
+
+
 
 /***************************************************************************
 * Main function to take user inputs and encrypt/decrypt them based on selection
@@ -208,12 +165,12 @@ int main() {
 			
 			// Encryption/Decryption
 			if (selection == 'e') {
-			    encrypt(key, inputText, convertedText); // Encryption method - Key, inputText and convertedText variables are passed as arguments.
+			    encryptDecrypt(true, key, inputText, convertedText); // Encryption method - Key, inputText and convertedText variables are passed as arguments.
 				printf("\r\nThe cipher text:\r\n");
 				printf("%s", convertedText); // prints cipher text. 
 			}
 			else {
-			    decrypt(inputText, convertedText); // Decryption method - inputText and convertedText variables are passed as arguments.
+			    encryptDecrypt(false, key, inputText, convertedText); // Decryption method - inputText and convertedText variables are passed as arguments.
 				printf("\r\nThe plain text:\r\n");
 				printf("%s", convertedText); // prints plain text
 			    
