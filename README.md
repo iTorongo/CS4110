@@ -15,4 +15,15 @@ Hardware and Software implementation of two stream cipher *Porta table cipher* a
 - [x] Porta-table cipher hardware implementation (vivado) [Need to refactor]
 - [ ] Autoclave cipher hardware implementation (vivado) [Not yet implemented]
 
+### Deliverables for 06.12.2021
+
+- [x] Porta-table cipher FSMD and ASMD chart
+- [x] Autoclave cipher FSMD and ASMD chart
+- [x] Porta-table cipher partial report
+- [x] Autoclave cipher partial report
+- [x] Porta-table cipher hardware implementation (vivado) [Need to refactor]
+- [x] Autoclave cipher hardware implementation (vivado) [Need to fix]
+- [x] Porta-table cipher Software implementation
+- [x] Autoclave cipher Software implementation
+
 
