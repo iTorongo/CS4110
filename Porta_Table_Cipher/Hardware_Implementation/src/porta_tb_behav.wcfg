@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="porta_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="porta_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.743333333 ms"></ZoomStartTime>
+      <ZoomEndTime time="12.043333334 ms"></ZoomEndTime>
+      <Cursor1Time time="13.460000000 ms"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="247"></NameColumnWidth>
+      <ValueColumnWidth column_width="88"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="16" />
+   <wvobject fp_name="/porta_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/srx" type="logic">
+      <obj_property name="ElementShortName">srx</obj_property>
+      <obj_property name="ObjectShortName">srx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/stx" type="logic">
+      <obj_property name="ElementShortName">stx</obj_property>
+      <obj_property name="ObjectShortName">stx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/clk_period" type="other">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/bit_period" type="other">
+      <obj_property name="ElementShortName">bit_period</obj_property>
+      <obj_property name="ObjectShortName">bit_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/rx_data_ascii_m" type="array">
+      <obj_property name="ElementShortName">rx_data_ascii_m[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data_ascii_m[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/rx_data_ascii_i" type="array">
+      <obj_property name="ElementShortName">rx_data_ascii_i[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data_ascii_i[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/rx_data_ascii_s" type="array">
+      <obj_property name="ElementShortName">rx_data_ascii_s[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data_ascii_s[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/rx_data_ascii_t" type="array">
+      <obj_property name="ElementShortName">rx_data_ascii_t[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data_ascii_t[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/rx_data_ascii_e" type="array">
+      <obj_property name="ElementShortName">rx_data_ascii_e[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data_ascii_e[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/rx_data_ascii_r" type="array">
+      <obj_property name="ElementShortName">rx_data_ascii_r[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data_ascii_r[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/rx_data_ascii_enter" type="array">
+      <obj_property name="ElementShortName">rx_data_ascii_enter[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data_ascii_enter[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/uut/cipher_unit/sdin" type="array">
+      <obj_property name="ElementShortName">sdin[7:0]</obj_property>
+      <obj_property name="ObjectShortName">sdin[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/uut/cipher_unit/key" type="array">
+      <obj_property name="ElementShortName">key[7:0]</obj_property>
+      <obj_property name="ObjectShortName">key[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/porta_tb/uut/cipher_unit/cphr_out" type="array">
+      <obj_property name="ElementShortName">cphr_out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">cphr_out[7:0]</obj_property>
+   </wvobject>
+</wave_config>

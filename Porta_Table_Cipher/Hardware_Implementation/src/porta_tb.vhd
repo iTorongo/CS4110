@@ -10,9 +10,11 @@ constant clk_period : time := 10 ns;
 constant bit_period : time := 52083ns; -- time for 1 bit.. 1bit/19200bps = 52.08 us
 
 constant rx_data_ascii_m: std_logic_vector(7 downto 0) := x"6D"; -- receive m
-constant rx_data_ascii_a: std_logic_vector(7 downto 0) := x"61"; -- receive a
-constant rx_data_ascii_k: std_logic_vector(7 downto 0) := x"6B"; -- receive k
+constant rx_data_ascii_i: std_logic_vector(7 downto 0) := x"69"; -- receive i
+constant rx_data_ascii_s: std_logic_vector(7 downto 0) := x"73"; -- receive s
+constant rx_data_ascii_t: std_logic_vector(7 downto 0) := x"74"; -- receive t
 constant rx_data_ascii_e: std_logic_vector(7 downto 0) := x"65"; -- receive e
+constant rx_data_ascii_r: std_logic_vector(7 downto 0) := x"72"; -- receive r
 constant rx_data_ascii_enter: std_logic_vector(7 downto 0) := x"0D"; -- receive enter
 
 Component porta
@@ -54,46 +56,66 @@ begin
                 end loop;
                 srx <= '1'; -- stop bit = 1
                 wait for 1ms;
-        
-        -- Test ASCII char a
-                        srx <= '0';                      -- start bit = 0
-                        wait for bit_period;
-                        for i in 0 to 7 loop
-                            srx <= rx_data_ascii_a(i);   -- 8 data bits
-                            wait for bit_period;
-                        end loop;
-                        srx <= '1';                      -- stop bit = 1
-                        wait for 1ms;
 
-        -- Test ASCII char k
-                        srx <= '0';                      -- start bit = 0
-                        wait for bit_period;
-                        for i in 0 to 7 loop
-                            srx <= rx_data_ascii_k(i);   -- 8 data bits
-                            wait for bit_period;
-                        end loop;
-                        srx <= '1';                      -- stop bit = 1
-                        wait for 1ms;
+        -- Test ASCII char i
+                srx <= '0'; -- start bit = 0
+                wait for bit_period;
+                for i in 0 to 7 loop
+                    srx <= rx_data_ascii_i(i);   -- 8 data bits
+                    wait for bit_period;
+                end loop;
+                srx <= '1'; -- stop bit = 1
+                wait for 1ms;
+
+        -- Test ASCII char s
+                srx <= '0'; -- start bit = 0
+                wait for bit_period;
+                for i in 0 to 7 loop
+                    srx <= rx_data_ascii_s(i);   -- 8 data bits
+                    wait for bit_period;
+                end loop;
+                srx <= '1'; -- stop bit = 1
+                wait for 1ms;
+        
+        -- Test ASCII char t
+                srx <= '0'; -- start bit = 0
+                wait for bit_period;
+                for i in 0 to 7 loop
+                    srx <= rx_data_ascii_t(i);   -- 8 data bits
+                    wait for bit_period;
+                end loop;
+                srx <= '1'; -- stop bit = 1
+                wait for 1ms;
  
          -- Test ASCII char e
-                        srx <= '0';                      -- start bit = 0
-                        wait for bit_period;
-                        for i in 0 to 7 loop
-                            srx <= rx_data_ascii_e(i);   -- 8 data bits
-                            wait for bit_period;
-                        end loop;
-                        srx <= '1';                      -- stop bit = 1
-                        wait for 1ms;
+                srx <= '0';                      -- start bit = 0
+                wait for bit_period;
+                for i in 0 to 7 loop
+                    srx <= rx_data_ascii_e(i);   -- 8 data bits
+                    wait for bit_period;
+                end loop;
+                srx <= '1';                      -- stop bit = 1
+                wait for 1ms;
+
+        -- Test ASCII char r
+                srx <= '0'; -- start bit = 0
+                wait for bit_period;
+                for i in 0 to 7 loop
+                    srx <= rx_data_ascii_r(i);   -- 8 data bits
+                    wait for bit_period;
+                end loop;
+                srx <= '1'; -- stop bit = 1
+                wait for 1ms;
                                                 
          -- Test ACII Enter
-                    srx <= '0';                      -- start bit = 0
+                srx <= '0';                      -- start bit = 0
+                wait for bit_period;
+                for i in 0 to 7 loop
+                    srx <= rx_data_ascii_enter(i);   -- 8 data bits
                     wait for bit_period;
-                    for i in 0 to 7 loop
-                      srx <= rx_data_ascii_enter(i);   -- 8 data bits
-                      wait for bit_period;
-                    end loop;
-                    srx <= '1';                      -- stop bit = 1
-                    wait;
+                end loop;
+                srx <= '1';                      -- stop bit = 1
+                wait;
        
         end process;
 
