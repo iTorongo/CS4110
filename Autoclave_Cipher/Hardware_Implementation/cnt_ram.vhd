@@ -2,11 +2,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-entity cnt_rom is
-   generic(
-      N: integer := 5; 
-      M: integer := 19
-   );
+entity cnt_ram is
+   generic(N: integer := 10);
    port(
       clk, reset: in std_logic;
       syn_clr, load, en, up: in std_logic;
@@ -14,9 +11,9 @@ entity cnt_rom is
       max_tick, min_tick: out std_logic;
       q: out std_logic_vector(N-1 downto 0)
    );
-end cnt_rom;
+end cnt_ram;
 
-architecture arch of cnt_rom is
+architecture arch of cnt_ram is
    signal r_reg: unsigned(N-1 downto 0);
    signal r_next: unsigned(N-1 downto 0);
 begin
@@ -30,7 +27,7 @@ begin
       end if;
    end process;
    -- next-state logic
-   r_next <= (others=>'0') when (r_reg=(M-1) or syn_clr='1') else
+   r_next <= (others=>'0') when syn_clr='1' else
              unsigned(d)   when load='1' else
              r_reg + 1     when en ='1' and up='1' else
              r_reg - 1     when en ='1' and up='0' else

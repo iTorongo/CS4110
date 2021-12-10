@@ -18,4 +18,7 @@ set_property PACKAGE_PIN B18 [get_ports rx]
 set_property PACKAGE_PIN A18 [get_ports tx]
 	set_property IOSTANDARD LVCMOS33 [get_ports tx]
 
+## Switches
+set_property PACKAGE_PIN V17 [get_ports dec]					
+	set_property IOSTANDARD LVCMOS33 [get_ports dec]
 
