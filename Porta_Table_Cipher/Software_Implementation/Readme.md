@@ -29,7 +29,7 @@
 
 - Build and Run the Project
   - Go the the **Explorer** tab in the top-left corner, right click your project name (In our case it is **autoclave**) under the **autoclave_system** section and select **Build Project**
-  - Remember to set the boot mode jumper (21 in the Figure) to JTAG mode (to the far right).
+  - Remember to set the boot mode jumper to JTAG mode (to the far right).
   - Right click your project again and select **Run As** --> **Launch Hardware**.
   - PuTTY will connect with your running application on the Zybo.
 
