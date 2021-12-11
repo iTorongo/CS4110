@@ -70,8 +70,6 @@ begin
       tx_done_tick=> tx_done, tx=>tx
 	  );
    
-
-
    cnt_ram_unit: entity work.cnt_ram(arch)
       generic map(N=>RAM_ADDR_WIDTH)
       port map(
