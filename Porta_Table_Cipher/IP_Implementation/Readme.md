@@ -35,9 +35,9 @@
 
   - Go to the location where you kept the source files downloaded in the earlier step, find the **Design** folder, select all of the files from that folder, and click **Open**. 
 
-  - Then Right click on the **Test Bench** on the Explorer window and click **New Files or Add Files**, Select **autoclave_tv.c** from the **Testbench** folder and click **Open**.
+  - Then Right click on the **Test Bench** on the Explorer window and click **New Files or Add Files**, Select **pt_tb.c** from the **Testbench** folder and click **Open**.
 
-  - Click **project** and select **Project setting**. In the **Project setting** window click **Synthesis** and select **autoclave_ip.c** , click **Browse** button and select **autoclave_en(autoclave_ip.c)** for Encryption or select **autoclave_de(autoclave_ip.c)** for Decryption , then click **OK**.
+  - Click **project** and select **Project setting**. In the **Project setting** window click **Synthesis** and select **pt_ip.c** , click **Browse** button and select **pt_en(pt_ip.c)** for Encryption or select **pt_de(pt_ip.c)** for Decryption , then click **OK**.
 
 - Simulation & Synthesis
 
@@ -72,8 +72,8 @@
   - Search for **ZYNQ7 Processing System** and double click on it.
 
   - Again go to **Flow Navigator** window , under **PROJECT MANAGEMENT** click **IP catalog**.
-  - Double click anywhere in the **IP CATALOG** tab  and select **Add repository**, select the folder which we exported earlier as a zip file (First unzip it), In our case it is **autoclave_en**.
-  - Expand Usr repository and double click to **autoclave_en**, it will open a popup window, click **Add IP to Block Design**.
+  - Double click anywhere in the **IP CATALOG** tab  and select **Add repository**, select the folder which we exported earlier as a zip file (First unzip it), In our case it is **pt_en**.
+  - Expand Usr repository and double click to **pt_en**, it will open a popup window, click **Add IP to Block Design**.
   - Now Click **Run Block Automation** and then click **OK** in the new popup window.
   - Click **Run Connection Automation** and **OK**. 
   - You can see the whole**Diagram** in Diagram Tab if everything is correct.
