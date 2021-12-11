@@ -17,7 +17,7 @@
   - Write a Platform project name and click **Next**.
   - In New Platform project window , under **Hardware Specification** click **Browse** and select the **.XSA** file which we exported earlier in **Vitis HLS** implementation.
   - Make sure that the Operating System should be **standalone** and processor should be **ps7_cortexa9_0** under the **Software Specification** section, then click **Finish**.
-  - In the Explorer tab  right click on the **Platform project** In our case it is **Autoclave_en** and click **Build Project**.
+  - In the Explorer tab  right click on the **Platform project** In our case it is **pt_en** and click **Build Project**.
 
 - Create a new Application Project
   - Click the **File** button , which is in the top-left corner, click **New** and select **Application Project..**
@@ -25,10 +25,10 @@
   - Give an appropriate name and click **Next**.
   - Again click **Next**.
   - Select **Hello World** and click **Finish**.
-  - Sowap the Content of the **Hello World** file with the Main file. In our case this is **AutoclaveCipherSW.c**.
+  - Sowap the Content of the **Hello World** file with the Main file. In our case this is **PortaTableCipherSW.c**.
 
 - Build and Run the Project
-  - Go the the **Explorer** tab in the top-left corner, right click your project name (In our case it is **autoclave**) under the **autoclave_system** section and select **Build Project**
+  - Go the the **Explorer** tab in the top-left corner, right click your project name (In our case it is **PortaTable**) under the **PortaTable_system** section and select **Build Project**
   - Remember to set the boot mode jumper to JTAG mode (to the far right).
   - Right click your project again and select **Run As** --> **Launch Hardware**.
   - PuTTY will connect with your running application on the Zybo.
