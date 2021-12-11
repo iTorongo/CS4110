@@ -3,18 +3,19 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
-
-void autoclave_en(uint8_t input, uint8_t *output)
+void autoclave(bool enc, uint8_t input, uint8_t *output)
 {
 
-#pragma HLS INTERFACE mode=s_axilite port=autoclave_en
-#pragma HLS INTERFACE mode=s_axilite port=input
-#pragma HLS INTERFACE mode=s_axilite port=output
+#pragma HLS INTERFACE mode = s_axilite port = autoclave
+#pragma HLS INTERFACE mode = s_axilite port = enc
+#pragma HLS INTERFACE mode = s_axilite port = input
+#pragma HLS INTERFACE mode = s_axilite port = output
 #pragma HLS PIPELINE II = 1
 
-	// MARK:- VARIABLES
-    int convertedText = 0; 
+    // MARK:- VARIABLES
+    int convertedText = 0; // To store processed text
     int keyIndex = 0;
 
     if (input == ' ')
@@ -22,44 +23,18 @@ void autoclave_en(uint8_t input, uint8_t *output)
         *output = ' '; // Handle spacing
     }
 
-    keyIndex = 'b' - 97; // A hardcoded key 'b' is used for design purpose
+    keyIndex = 'b' - 97;
 
-    // Encryption: Ci + Ki
-    /// Ci = Input cipher character
-    /// Ki = Key
-    convertedText = (input >= 65 && input <= 90) ? (input - 65) : (input - 97) + keyIndex;
-    convertedText = (convertedText > 25) ? (convertedText - 26): convertedText;
-    convertedText = (input >= 65 && input <= 90) ? (convertedText + 'A') : (convertedText + 'a');
-
-    *output = (char)convertedText;  // Assiging converted text input output text based on index
-    return;
-}
-
-
-void autoclave_de(uint8_t input, uint8_t *output)
-{
-
-#pragma HLS INTERFACE mode=s_axilite port=autoclave_en
-#pragma HLS INTERFACE mode=s_axilite port=input
-#pragma HLS INTERFACE mode=s_axilite port=output
-#pragma HLS PIPELINE II = 1
-
-	// MARK:- VARIABLES
-    int convertedText = 0;
-    int keyIndex = 0;
-
-    if (input == ' ')
-    {
-        *output = ' '; // Handle spacing
+    if (enc)
+    { // Encode
+        convertedText = (input >= 65 && input <= 90) ? (input - 65) : (input - 97) + keyIndex;
+        convertedText = (convertedText > 25) ? (convertedText - 26) : convertedText;
     }
-
-    keyIndex = 'b' - 97; // A hardcoded key 'b' is used for design purpose
-
-    // Decryption: Ci - Ki
-    /// Ci = Input cipher character
-    /// Ki = Key
-    convertedText = (input >= 65 && input <= 90) ? (input - 65) : (input - 97) - keyIndex;
-    convertedText = (convertedText < 0) ? (convertedText + 26) : convertedText;
+    else
+    { // Decode
+        convertedText = (input >= 65 && input <= 90) ? (input - 65) : (input - 97) - keyIndex;
+        convertedText = (convertedText < 0) ? (convertedText + 26) : convertedText;
+    }
 
     // Handling uppercase/lowercase input
     convertedText = (input >= 65 && input <= 90) ? (convertedText + 'A') : (convertedText + 'a');
@@ -67,4 +42,3 @@ void autoclave_de(uint8_t input, uint8_t *output)
     *output = (char)convertedText; // Assiging converted text input output text based on index
     return;
 }
-
