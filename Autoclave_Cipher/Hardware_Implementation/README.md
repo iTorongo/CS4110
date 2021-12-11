@@ -91,5 +91,5 @@
 - Encryption and Decryption Operation
 
   - The first switch from the left **V17** in the **Basys3** board is used as the mode switch. When its **Low** Encryption operation will take place, and when its **High** Decryption operation will take place. 
-  - By keeping the switch to low, on the Putty terminal, typing "Return" followed by the **Enter** should show cipher text **Swpjan**
-  - And, by making the switch to hight, on the Putty Terminal, typing **Swpjan** followed by the **Enter** should show plain text **Return**
+  - By keeping the switch to low, on the Putty terminal, typing **"Return"** followed by the **Enter** should show cipher text **"Swpjan"**
+  - And, by making the switch to hight, on the Putty Terminal, typing **Swpjan** followed by the **"Enter"** should show plain text **"Return"**
