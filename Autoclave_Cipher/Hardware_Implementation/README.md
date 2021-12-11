@@ -43,7 +43,7 @@
   - Click on the ***+*** on the sources window, or from the ***Project Manager*** window on the left, click ***Add Sources***.
   - In the add sources wizard, select ***Add or create simulation sources*** and click ***Next***.
   - Click either ***+*** on the left top corner or click ***Add Files*** from bottom.
-  - Go to the location where you kept the source files downloaded in earlier step, find the ***Testbench*** folder, select ***autoclave_tv.vhd*** file from that folder, and click ***Open***.
+  - Go to the location where you kept the source files downloaded in earlier step, find the ***Testbench*** folder, select ***autoclave_tb.vhd*** file from that folder, and click ***Open***.
   - Click ***Finish*** and wait for some time to finish adding the simulation file to your project.
 
 
