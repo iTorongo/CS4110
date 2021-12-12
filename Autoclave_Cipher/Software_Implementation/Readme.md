@@ -46,10 +46,10 @@
 
 - Encryption and Decryption Operation
  
-  - When Opened terminal you should see a message **Press 'e' for encrypt or 'd' for decrypt, 'q' for quit**.
+  - When opened terminal, you should see a message **Press 'e' for encrypt or 'd' for decrypt, 'q' for quit**.
   - If type **e** and **Enter**,  PuTTY Terminal should asked for the **Plain text** to encode or if type **d** and **Enter** it would ask for **Cipher text** to decode or if       type **q** and **Enter** it will show the message **programm finished**.
-  - For example if typing **Return** followed by the Enter from your keyboard should show cipher text **Swpjan**.
-  - And,typing **Swpjan** followed by the Enter from your keyboard should show plain text **Return**.
+  - For example if typing **Return** followed by the **Enter** from your keyboard should show cipher text **Swpjan**.
+  - And,typing **Swpjan** followed by the **Enter** from your keyboard should show plain text **Return**.
   
  
   
