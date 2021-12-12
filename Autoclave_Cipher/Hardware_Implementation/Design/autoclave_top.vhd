@@ -1,4 +1,3 @@
--- (adapted from) Listing 7.4
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -25,26 +24,24 @@ end autoclave;
 architecture str_arch of autoclave is
    signal tick: std_logic;
    signal rx_done: std_logic;
+   signal wr: std_logic;
    signal ascii_r, ascii_t: std_logic_vector(7 downto 0);
    signal tx_start, tx_done: std_logic;
-   signal clrb_ram, incb_ram: std_logic;
-   signal addrb_ram: std_logic_vector(9 downto 0);
+   signal clra_ram, inca_ram: std_logic;
+   signal addra_ram: std_logic_vector(9 downto 0);
    signal key, cphr_out: std_logic_vector(7 downto 0);
-   signal wr: std_logic;
    signal load_reg_a, clear_reg_a: std_logic;
-   signal reg_a_out: std_logic_vector(7 downto 0);
    signal load_reg_b, clear_reg_b: std_logic;
-   signal reg_b_out: std_logic_vector(7 downto 0);
-   signal mux_ctr_key: std_logic;
-   signal mux_ctr_input: std_logic;
+   signal reg_a_out, reg_b_out: std_logic_vector(7 downto 0);
+   signal mux_ctr_a, mux_ctr_b: std_logic;
    signal dec_mode: std_logic;
 begin
-   
-   key <= reg_a_out when ((mux_ctr_key = '1') and (dec_mode = '0')) else 
-      x"62" when ((mux_ctr_key = '0') and (dec_mode = '0')) else -- encode
+   -- Assigning the value of key based on encode and decode condition
+   key <= reg_a_out when ((mux_ctr_a = '1') and (dec_mode = '0')) else  -- key will be reg_a_out when encode enabled
+      x"62" when ((mux_ctr_a = '0') and (dec_mode = '0')) else  -- initial value of key 'B'
 
-      reg_b_out when ((mux_ctr_input = '1') and (dec_mode = '1')) else
-      x"62" when ((mux_ctr_input = '0') and (dec_mode = '1')); -- decode
+      reg_b_out when ((mux_ctr_b = '1') and (dec_mode = '1')) else -- key will be reg_b_out when devode enabled
+      x"62" when ((mux_ctr_b = '0') and (dec_mode = '1')); -- initial value of key 'B'
 
    baud_gen_unit: entity work.mod_m_counter(arch)
       generic map(M=>DVSR, N=>DVSR_BIT)
@@ -74,17 +71,17 @@ begin
       generic map(N=>RAM_ADDR_WIDTH)
       port map(
       clk=>clk, reset=>reset,
-      syn_clr=>clrB_ram, load=>'0', en=>incb_ram, up=>'1',
+      syn_clr=>clra_ram, load=>'0', en=>inca_ram, up=>'1',
       d=>(others=>'0'),
       max_tick=>open, min_tick=>open,
-      q=>addrB_ram   
+      q=>addra_ram   
 	  );
 
    ram_unit: entity work.xilinx_one_port_ram_sync(arch)
       generic map(ADDR_WIDTH=>RAM_ADDR_WIDTH, DATA_WIDTH=>RAM_DATA_WIDTH)
       port map(
       clk=>clk, wr=>wr,
-      addr=>addrb_ram,
+      addr=>addra_ram,
       din=>cphr_out, dout=>ascii_t	  
 	  );
 
@@ -93,10 +90,12 @@ begin
         clk => clk, rst => reset, load => load_reg_a,
         clear => clear_reg_a, d => cphr_out, q => reg_a_out);
 
+
    reg_b : ENTITY work.reg8bits(arch)
      PORT MAP(
         clk => clk, rst => reset, load => load_reg_b,
         clear => clear_reg_b, d => ascii_r, q => reg_b_out);
+        
 
    cipher_unit: entity work.cipher(arch)
       port map(
@@ -107,10 +106,10 @@ begin
    ctr_path_unit: entity work.ctr_path(arch)
       port map(
       clk=>clk, reset=>reset, dec_mode => dec_mode, dec=> dec,
-      mux_ctr_key => mux_ctr_key,
-      mux_ctr_input => mux_ctr_input,
+      mux_ctr_a => mux_ctr_a,
+      mux_ctr_b => mux_ctr_b,
       rx_done=>rx_done, ascii_r=>ascii_r, 
-      clrb_ram=>clrb_ram, incb_ram=>incb_ram, 
+      clra_ram=>clra_ram, inca_ram=>inca_ram, 
       wr=>wr, ascii_t=>ascii_t, 
       tx_start=>tx_start, tx_done=>tx_done,
       load_reg_a => load_reg_a, clear_reg_a => clear_reg_a,
