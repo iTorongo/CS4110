@@ -16,11 +16,11 @@
   - In the first wizard, click **Next**
   - In the next screen, provide a project name of your choice and select the project location
   - Check **Create project subdirectory** to make sure keeping all the project files under a child folder, and click **Next**
-  - In the **Add/Romeve design Files** screen no need to add anything just click **Next** and Same for **Add/Romeve Testbench Files** screen, just click **Next**
+  - In the **Add/Romeve design Files** screen no need to add anything just click **Next** and same for **Add/Romeve Testbench Files** screen, just click **Next**
   - Now In the **Solution Configuration** screen, write a solution Name or leave it as it is.
   
   - Clilck three dot button in the right hand side from the **Part Selection** which is in the same window, it will show the **Device Selection Dialog**.
-  - select **Boards** button, and in the search bar, type **Zybo** board or Scroll down the boards to find the  **Zybo** board , select it and click **OK**.
+  - Select **Boards** button, and in the search bar, type **Zybo** board or Scroll down the boards to find the  **Zybo** board , select it and click **OK**.
   - If the board is not showing in the list, download the boards manually from here Link and add this to the boards repository.
   - Click **Finish** in the project summary screen.
 
@@ -45,7 +45,7 @@
 
   - **C Simulation** will run for a while and should show Finished C Simulation in the console with the encoded and decoded message.
 
-  - Now **Run C Synthesis** from the same window and click **OK** . make sure the board is **Zybo(xc7z010clg400-1)**.
+  - Now **Run C Synthesis** from the same window and click **OK**. Make sure the board is **Zybo(xc7z010clg400-1)**.
 
   - **C Synthesis** also take some time to run and should show Finished C Synthesis in the console.
 
@@ -62,10 +62,12 @@
   - When the Cosimulation is done you can see the waveform of the output.
 
 - Hardware settup 
+
   - Open up Vivado , create a **New project** name it, select a location as the done in **HW implementation**.
   - Make sure to select the **Zybo** board.
 
 - Block Design
+
   - In the **Flow Navigator** window on the left , go to **IP INTEGRATION** and click **Create Block Design**, click **OK**.
   - From the **Diagram** window  press teh **+** button  to add IP.
 
@@ -73,7 +75,7 @@
 
   - Again go to **Flow Navigator** window , under **PROJECT MANAGEMENT** click **IP catalog**.
   - Double click anywhere in the **IP CATALOG** tab  and select **Add repository**, select the folder which we exported earlier as a zip file (First unzip it), In our case it is **pt_en**.
-  - Expand Usr repository and double click to **pt_en**, it will open a popup window, click **Add IP to Block Design**.
+  - Expand User repository and double click to **pt_en**, it will open a popup window, click **Add IP to Block Design**.
   - Now Click **Run Block Automation** and then click **OK** in the new popup window.
   - Click **Run Connection Automation** and **OK**. 
   - You can see the whole**Diagram** in Diagram Tab if everything is correct.
