@@ -31,7 +31,7 @@
 - Build and Run the Project
 
   - Go the the **Explorer** tab in the top-left corner, right click your project name (In our case it is **autoclave**) under the **autoclave_system** section and select **Build Project**
-  - Remember to set the boot mode jumper [(21 in the Figure)](https://github.com/oddek/CS4110-HLS-Tutorial/blob/master/img/vitis-15.png) to JTAG mode (to the far right).
+  - Remember to set the boot mode jumper [(21 in the Figure)](https://digilent.com/reference/_media/reference/programmable-logic/zybo-z7/zybo-z7-callout.png?cache=) to JTAG mode (to the far right).
   - Right click your project again and select **Run As** --> **Launch Hardware**.
   - PuTTY will connect with your running application on the Zybo.
 
