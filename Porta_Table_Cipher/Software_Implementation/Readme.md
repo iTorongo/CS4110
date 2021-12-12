@@ -44,7 +44,9 @@
 
 - Encryption and Decryption Operation
 
-  - on the PuTTY terminal, typing "Chief" followed by the Enter from your keyboard should show cipher text "Wqzvq".
+  - When Opened terminal you should see a message **Press 'e' for encrypt or 'd' for decrypt, 'q' for quit**.
+  - If type **e** and **Enter**, PuTTY Terminal should asked for the **Plain text** to encode or if type **d** and **Enter** it would ask for **Cipher text** to decode or if         type **q** and **Enter** it will show the message programm finished.
+  - For Example , if typing "Chief" followed by the Enter from your keyboard should show cipher text "Wqzvq".
   - And, typing "Wqzvq" followed by the Enter from your keyboard should show cipher text "Chief".
   - The encryption and decryption method of the Porta Table Cipher is the same. Hence, the implementation contains only one mode which served both of the operations.
  
