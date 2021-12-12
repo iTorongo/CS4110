@@ -1,25 +1,23 @@
 
 # Software Implementation of the Porta Table Cipher
 
-
 ### This is a step by step guide to recreate the project in Vitis IDE 2021.1
 ---
-
-
 
 
 ## Steps
 
 - Create a new Vitis IDE Project
 
-  - Open Vitis IDE 2021.1 and locate a suitable possition then click **Launch**.
+  - Open Vitis IDE 2021.1 and locate a suitable position then click **Launch**.
   - When you go to Welcome window select **Create Platform Project**.
   - Write a Platform project name and click **Next**.
   - In New Platform project window , under **Hardware Specification** click **Browse** and select the **.XSA** file which we exported earlier in **Vitis HLS** implementation.
-  - Make sure that the operating system should be **standalone** and processor should be **ps7_cortexa9_0** under the **Software Specification** section, then click **Finish**.
+  - Make sure that the operating system is **standalone** and processor is **ps7_cortexa9_0** under the **Software Specification** section, then click **Finish**.
   - In the Explorer tab  right click on the **Platform project** In our case it is **pt_en** and click **Build Project**.
 
 - Create a new Application Project
+
   - Click the **File** button , which is in the top-left corner, click **New** and select **Application Project..**
   - Now in the **New Application Project** window select the Platform you created earlier section and click **Next**.
   - Give an appropriate name and click **Next**.
@@ -35,6 +33,7 @@
   - PuTTY will connect with your running application on the Zybo.
 
 - PuTTY Configuration
+
   - Download PuTTY from here: https://www.putty.org/
   - Open the Device Manager on your computer, and find the port for serial communication under Ports(COM & LPT. It should be something like COM4/6 or so on. Just keep it noted.
   - Open PuTTY you should be on the Session tab with a page called Basic options for your PuTTY session on the top.
@@ -45,10 +44,10 @@
 
 - Encryption and Decryption Operation
 
-  - When opened terminal you should see a message **Press 'e' for encrypt or 'd' for decrypt, 'q' for quit**.
-  - If type **e** and **Enter**, PuTTY terminal should asked for the **Plain text** to encode or if type **d** and **Enter** it would ask for **Cipher text** to decode or if         type **q** and **Enter** it will show the message programm finished.
-  - For Example , if typing "Chief" followed by the Enter from your keyboard should show cipher text "Wqzvq".
-  - And, typing "Wqzvq" followed by the Enter from your keyboard should show cipher text "Chief".
+  - On the PuTTY terminal, you should see a message **Press 'e' for encrypt or 'd' for decrypt, 'q' for quit**.
+  - If you type **e** and press **Enter**, PuTTY terminal should ask for the **Plain text** to encode or if you type **d** and press **Enter** it will ask for **Cipher text** to decode/
+  - Typing ***"Chief"*** followed by the Enter from your keyboard should show cipher text ***"Wqzvq"***.
+  - And, typing ***"Wqzvq"*** followed by the Enter from your keyboard should show cipher text ****"Chief"***.
   - The encryption and decryption method of the Porta Table Cipher is the same. Hence, the implementation contains only one mode which served both of the operations.
  
   
