@@ -1,3 +1,6 @@
+----------------------------------------------------------------------------------
+-- Cipher
+----------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.ALL;
@@ -28,6 +31,7 @@ begin
       X"0D" when (sdin = X"0D") else 
       ( 97 + ( tempdin + skey ) mod 26 ) when (dec = '0') else  -- Encryption operation (message + key) mod 26
       ( 97 + (( tempdin - skey ) + 26) mod 26 ) when (dec = '1'); -- Decryption operation ((message - key) + 26) mod 26
+
    -- The output is again converted to upper case if the input was upper case otherwise keep it lowercase
    cphr_out <= std_logic_vector(sdout - x"20") when ((unsigned(ascii_r) >= x"41") and (unsigned(ascii_r) <= x"5A")) else -- Converting lowercase character to uppercase for output
        std_logic_vector(sdout);

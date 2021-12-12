@@ -1,3 +1,6 @@
+----------------------------------------------------------------------------------
+-- Top design module
+----------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -22,13 +25,18 @@ entity autoclave is
 end autoclave;
 
 architecture str_arch of autoclave is
+   -- Baud and uart signals
    signal tick: std_logic;
    signal rx_done: std_logic;
-   signal wr: std_logic;
-   signal ascii_r, ascii_t: std_logic_vector(7 downto 0);
    signal tx_start, tx_done: std_logic;
+   signal ascii_r, ascii_t: std_logic_vector(7 downto 0);
+
+   -- RAM signals
    signal clra_ram, inca_ram: std_logic;
    signal addra_ram: std_logic_vector(9 downto 0);
+   signal wr: std_logic;
+
+   -- Encoder and decoder signals
    signal key, cphr_out: std_logic_vector(7 downto 0);
    signal load_reg_a, clear_reg_a: std_logic;
    signal load_reg_b, clear_reg_b: std_logic;
@@ -36,7 +44,7 @@ architecture str_arch of autoclave is
    signal mux_ctr_a, mux_ctr_b: std_logic;
    signal dec_mode: std_logic;
 begin
-   -- Assigning the value of key based on encode and decode condition
+   -- Assigning the value of key based on encode and decode condition dec_mode = 0 represents encode
    key <= reg_a_out when ((mux_ctr_a = '1') and (dec_mode = '0')) else  -- key will be reg_a_out when encode enabled
       x"62" when ((mux_ctr_a = '0') and (dec_mode = '0')) else  -- initial value of key 'B'
 

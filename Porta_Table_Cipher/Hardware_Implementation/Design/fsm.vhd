@@ -51,7 +51,8 @@ begin
          -----------------
          when s1 =>
             if (rx_done='1') then
-			      if ((ascii_r >= x"41" and ascii_r <= x"5A") or  -- Check for valid ASCII
+               -- Check for valid ascii only for Alphabet lower and upper case, Space and Enter
+			      if ((ascii_r >= x"41" and ascii_r <= x"5A") or  
 			       (ascii_r >= x"61" and ascii_r <= x"7A") or 
 			           ascii_r = x"20" or ascii_r = x"0D") then
                   wr <= '1'; -- Write enabled RAM
@@ -77,7 +78,7 @@ begin
             if (ascii_t=x"0D") then 
 			   state_next <= s0;
 			else 
-			   tx_start <= '1';
+			   tx_start <= '1'; 
 			   state_next <= s3;
 			end if;
          -----------------
