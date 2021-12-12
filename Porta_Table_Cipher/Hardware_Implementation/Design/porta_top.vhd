@@ -1,7 +1,10 @@
--- (adapted from) Listing 7.4
+----------------------------------------------------------------------------------
+-- Top design module
+----------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+
 entity porta is
    generic(
      -- Default setting:
@@ -12,8 +15,8 @@ entity porta is
       DVSR_BIT: integer:=9; -- # bits of DVSR
       ROM_ADDR_WIDTH: integer:=5;   -- # maximum size of the ROM (key): 2^5 (32)
       KEY_LENGTH: integer:=19;       -- length of the key currently used
-	  RAM_ADDR_WIDTH: integer:=10;  -- # maximum size of the RAM: 2^10 (1024)
-	  RAM_DATA_WIDTH: integer:=8   -- # 8-bit data words
+	   RAM_ADDR_WIDTH: integer:=10;  -- # maximum size of the RAM: 2^10 (1024)
+	   RAM_DATA_WIDTH: integer:=8   -- # 8-bit data words
    );
    port(
       clk, reset: in std_logic;
@@ -23,15 +26,21 @@ entity porta is
 end porta;
 
 architecture str_arch of porta is
+   -- Baud and uart signals
    signal tick: std_logic;
    signal rx_done: std_logic;
-   signal ascii_r, ascii_t: std_logic_vector(7 downto 0);
    signal tx_start, tx_done: std_logic;
-   signal clra_rom, inca_rom, clrb_ram, incb_ram: std_logic;
+   signal ascii_r, ascii_t: std_logic_vector(7 downto 0);
+
+   -- Key ROM and RAM signals
+   signal clra_rom, inca_rom: std_logic; 
+   signal clrb_ram, incb_ram: std_logic;
    signal addrb_ram: std_logic_vector(9 downto 0);
    signal addra_rom: std_logic_vector(4 downto 0);
-   signal key, cphr_out: std_logic_vector(7 downto 0);
    signal wr: std_logic;
+
+   -- Key and cipher out signals
+   signal key, cphr_out: std_logic_vector(7 downto 0);
 
 begin
 
@@ -103,10 +112,10 @@ begin
       port map(
       clk=>clk, reset=>reset,
       rx_done=>rx_done, ascii_r=>ascii_r, 
-	  clra_rom=>clra_rom, inca_rom=>inca_rom, 
-	  clrb_ram=>clrb_ram, incb_ram=>incb_ram, 
-	  wr=>wr, ascii_t=>ascii_t, 
-	  tx_start=>tx_start, tx_done=>tx_done 
-	  );	
+      clra_rom=>clra_rom, inca_rom=>inca_rom, 
+      clrb_ram=>clrb_ram, incb_ram=>incb_ram, 
+      wr=>wr, ascii_t=>ascii_t, 
+      tx_start=>tx_start, tx_done=>tx_done 
+	);	
 			   
 end str_arch;

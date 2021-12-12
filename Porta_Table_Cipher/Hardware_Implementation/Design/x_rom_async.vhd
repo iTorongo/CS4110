@@ -1,4 +1,6 @@
--- (adapted from) Listing 11.5
+----------------------------------------------------------------------------------
+-- ROM
+----------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -14,7 +16,8 @@ architecture arch of rom_template is
    constant DATA_WIDTH: integer:=8;
    type rom_type is array (0 to 2**ADDR_WIDTH-1)
         of std_logic_vector(DATA_WIDTH-1 downto 0);
-   -- ROM definition
+        
+   -- ROM definition the secret key mister
    constant HEX2LED_ROM: rom_type:=(  -- mistermistermister
       x"6D",  -- addr 00: m
       x"69",  -- addr 01: i
