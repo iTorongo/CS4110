@@ -1,4 +1,6 @@
--- (adapted from) Listing 5.1
+----------------------------------------------------------------------------------
+-- Control Path
+----------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 entity ctr_path is
@@ -37,46 +39,57 @@ begin
    state_next <= state_reg;
    
       case state_reg is
+         -----------------
+         -- S0
+         -----------------
          when s0 =>
-            clra_rom <= '1';
-			clrb_ram <= '1';
+            clra_rom <= '1'; -- Clear rom key
+			   clrb_ram <= '1'; -- Clear ram key
             state_next <= s1;
+         -----------------
+         -- S1
+         -----------------
          when s1 =>
             if (rx_done='1') then
-			   if ((ascii_r >= x"41" and ascii_r <= x"5A") or 
+               -- Check for valid ascii only for Alphabet lower and upper case, Space and Enter
+			      if ((ascii_r >= x"41" and ascii_r <= x"5A") or  
 			       (ascii_r >= x"61" and ascii_r <= x"7A") or 
 			           ascii_r = x"20" or ascii_r = x"0D") then
-                  wr <= '1';
+                  wr <= '1'; -- Write enabled RAM
                   
                   if (ascii_r = x"20") then
-                     incb_ram <= '1';
+                     incb_ram <= '1'; -- Increment ram key
                      state_next <= s1;
-                  else
-                  
-				  if (ascii_r=x"0D") then
-				     clrb_ram <= '1';
-					 state_next <= s2;
-				  else
-				     inca_rom <= '1';
-					 incb_ram <= '1';
-				  end if;
-				  
-				  end if;
-				  
+                     else
+                     if (ascii_r=x"0D") then -- X"0D" = "Enter"-key (carriage return)
+                        clrb_ram <= '1'; -- Clear ram key
+                        state_next <= s2;
+                     else
+                        inca_rom <= '1';   -- Increment rom key
+                        incb_ram <= '1';   -- Increment ram key
+                     end if;
+				      end if;
                end if;
-			end if;
+			   end if;
+         -----------------
+         -- S2
+         -----------------
          when s2 =>
             if (ascii_t=x"0D") then 
 			   state_next <= s0;
 			else 
-			   tx_start <= '1';
+			   tx_start <= '1'; 
 			   state_next <= s3;
 			end if;
-		 when s3 =>
-		    if (tx_done='1') then  
-			   incb_ram <= '1';
-			   state_next <= s2;
-			end if;
+         -----------------
+         -- S3
+         -----------------
+         when s3 =>
+            if (tx_done='1') then  
+               incb_ram <= '1';
+               state_next <= s2;
+            end if;
+
       end case;
    end process;
 

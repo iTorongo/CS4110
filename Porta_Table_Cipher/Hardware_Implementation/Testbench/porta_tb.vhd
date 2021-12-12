@@ -1,5 +1,5 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+library ieee;
+use ieee.std_logic_1164.ALL;
 
 entity porta_tb is
    -- Port ();
@@ -9,6 +9,7 @@ architecture arch of porta_tb is
 constant clk_period : time := 10 ns;
 constant bit_period : time := 52083ns; -- time for 1 bit.. 1bit/19200bps = 52.08 us
 
+-- Defining the input chief for the UUT
 constant rx_data_ascii_c: std_logic_vector(7 downto 0) := x"63"; -- receive c
 constant rx_data_ascii_h: std_logic_vector(7 downto 0) := x"68"; -- receive h
 constant rx_data_ascii_i: std_logic_vector(7 downto 0) := x"69"; -- receive i
@@ -45,7 +46,7 @@ begin
         wait for clk_period*2;
         reset <= '0';
         wait for clk_period*2;
-        
+        -- Encryption test vector
         -- Test ASCII char c
                 srx <= '0'; -- start bit = 0
                 wait for bit_period;
@@ -96,7 +97,7 @@ begin
                 srx <= '1';                      -- stop bit = 1
                 wait for 1ms;
                                                 
-         -- Test ACII Enter
+         -- Test ASCII Enter
                 srx <= '0';                      -- start bit = 0
                 wait for bit_period;
                 for i in 0 to 7 loop

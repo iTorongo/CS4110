@@ -1,12 +1,3 @@
-----------------------------------------------------------------------------------
--- Listing 4.11 Mod-m counter
--- This baud-rate generator will generate sampling ticks
-
--- Frequency = 16x the required baud rate (16x oversampling)
--- 19200 bps * 16 = 307200 ticks/s
--- 100 MHz / 307200 = 325.52 = 326
-----------------------------------------------------------------------------------
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;

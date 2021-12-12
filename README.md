@@ -25,5 +25,3 @@ Hardware and Software implementation of two stream cipher *Porta table cipher* a
 - [x] Autoclave cipher hardware implementation (vivado) [Need to fix]
 - [x] Porta-table cipher Software implementation
 - [x] Autoclave cipher Software implementation
-
-
