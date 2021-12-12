@@ -56,8 +56,8 @@ begin
         -- S0
         -----------------
         when s0 =>
-           clra_ram <= '1'; -- clear ram key
-           load_reg_k <= '1'; -- load register
+           clra_ram <= '1';   -- clear ram key
+           load_reg_k <= '1'; -- Load register
            state_next <= s1;
         ------------------- 
         -- S1
