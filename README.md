@@ -9,4 +9,6 @@ Hardware, Software, and Vitis HLS implementation of two stream ciphers Porta tab
 
 There are two folders in this repository. Each one contains all three (Hardware, Software, and Vitis HLS) implementation on three different folders, and each implementation contains its own **readme.md**. All the steps to recreate the implementations have been mentioned in the readme file.
 
-Additionally, there is an image folder for each cipher that contains the image of FSMD and ASMD chart for hardware implementation.
+Additionally, there is an image folder for each cipher that contains the image of FSMD and ASMD chart for hardware implementation. 
+
+Finally, a comprehensive paper is included that contains the dicussion of the implementations of these ciphers. 
